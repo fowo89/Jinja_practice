@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 import os
 import jinja2
 import webapp2
@@ -29,8 +30,13 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
-        return self.render_template("hello.html")
+        ena = 2
+        izrebane_stevilke = [1, 2, 3, 4]
+        info = {"sporocilo": izrebane_stevilke, "posiljatelj": "Tomaz", "datum": "15.02.2017", "stevilka": ena}
+
+        return self.render_template("hello.html", info)
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler),
+    webapp2.Route('/pozdrav', MainHandler),
 ], debug=True)
